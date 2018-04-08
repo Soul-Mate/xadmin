@@ -1,0 +1,19 @@
+{
+    "name": "yuanchang/xadmin",
+    "description": "laravel admin and rbac",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "yuanchang",
+            "email": "yuanchang.xu@outlook.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.6.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "Admin\\":"src/"
+        }
+    }
+}
