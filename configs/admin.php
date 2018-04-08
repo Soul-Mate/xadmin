@@ -48,11 +48,6 @@ return [
         Admin\Providers\AdminRouteServiceProvider::class,
         Admin\Providers\AdminAuthServiceProvider::class,
         Admin\Providers\AdminEventServiceProvider::class,
-        Flash\FlashServiceProvider::class,
-    ],
-
-    'alias' =>  [
-        'Flash'=>Flash\FlashFacade::class
     ],
 
     /*
