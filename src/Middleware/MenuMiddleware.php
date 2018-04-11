@@ -72,7 +72,7 @@ class MenuMiddleware
         if ($cnt <= 0) {
             return false;
         }
-        $pattern = '/\w+\.'.$current[0].'(\.\w+)+/';
+        $pattern = '/\w+\.'.$current[1].'(\.\w+)+/';
         return preg_match($pattern, $route);
     }
 }
