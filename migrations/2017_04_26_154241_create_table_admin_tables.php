@@ -37,10 +37,10 @@ class CreateTableAdminTables extends Migration
             $table->increments('id');
             $table->string('name', 50)->unique();
             $table->integer('order')->default(0);
-            $table->string('uri', 50);
+            $table->string('uri', 150);
+            $table->boolean("visit")->default(1)->nullable()->comment("是否显示在菜单栏: 0-否 1-是");        
             $table->string('icon', 50);
-            $table->unsignedInteger('parent_id')->nullable();
-            $table->boolean("visit")->default(1)->nullable()->comment("是否显示在菜单栏: 0-否 1-是");
+            $table->unsignedInteger('parent_id')->nullable();            
             $table->timestamps();
             $table->foreign('parent_id')->references('id')->on('admin_permissions')->onDelete('cascade')->onUpdate('cascade');
             $table->engine = 'INNODB';

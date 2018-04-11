@@ -6,7 +6,7 @@
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel">
             <div class="pull-left image">
-                <img src="/avatar.png" width="" class="img-circle" alt="User Image">
+                <img src="/packages/admin/avatar.png" width="" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
                 <p>AdminName</p>

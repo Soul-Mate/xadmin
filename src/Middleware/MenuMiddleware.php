@@ -39,7 +39,7 @@ class MenuMiddleware
         } else {
             $currentRouteNamePrefix = substr($currentRouteName, 0);
         }
-
+        
         foreach ($menus as $index => $permission) {
 
             if (strpos($permission["uri"], $currentRouteNamePrefix) !== false)
