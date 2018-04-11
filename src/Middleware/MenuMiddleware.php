@@ -32,17 +32,9 @@ class MenuMiddleware
     private static function buildPermissionTree(array $menus): string
     {
         $html = "";
-        $currentRouteName = Route::currentRouteName();
-
-        if (strpos($currentRouteName, ".")) {
-            $currentRouteNamePrefix = substr($currentRouteName, 0, strpos($currentRouteName, "."));
-        } else {
-            $currentRouteNamePrefix = substr($currentRouteName, 0);
-        }
-        
+        $current = Route::currentRouteName();
         foreach ($menus as $index => $permission) {
-
-            if (strpos($permission["uri"], $currentRouteNamePrefix) !== false)
+            if (self::matchRoute($current, $permission["uri"]))
                 $html .= '<li class="active">';
             else
                 $html .= '<li>';
@@ -56,7 +48,7 @@ class MenuMiddleware
 
             if (!empty($permission["child"])) {
                 foreach ($permission["child"] as $c) {
-                    if (strpos($c["uri"], $currentRouteNamePrefix) !== false)
+                    if ($c["uri"] == $current)
                         $html .= '<li class="active">';
                     else
                         $html .= '<li>';
@@ -71,5 +63,21 @@ class MenuMiddleware
             $html .= '</li>';
         }
         return $html;
+    }
+
+    private static function matchRoute(string $current, string $route)
+    {
+        $current = explode(".", $current);
+        $cnt = count($current);
+        if ($cnt <= 0 || $cnt == 1) {
+            return false;
+        }
+        $prefix = array_shift($current);
+        array_pop($current);
+        if (!$current)
+            return starts_with($route, $prefix);
+        $str = implode(".", $current);
+        $pattern = '/\w+\.'.$str.'(\.\w+)+/';
+        return preg_match($pattern, $route);
     }
 }
