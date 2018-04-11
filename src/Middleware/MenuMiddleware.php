@@ -69,15 +69,10 @@ class MenuMiddleware
     {
         $current = explode(".", $current);
         $cnt = count($current);
-        if ($cnt <= 0 || $cnt == 1) {
+        if ($cnt <= 0) {
             return false;
         }
-        $prefix = array_shift($current);
-        array_pop($current);
-        if (!$current)
-            return starts_with($route, $prefix);
-        $str = implode(".", $current);
-        $pattern = '/\w+\.'.$str.'(\.\w+)+/';
+        $pattern = '/\w+\.'.$current[0].'(\.\w+)+/';
         return preg_match($pattern, $route);
     }
 }
