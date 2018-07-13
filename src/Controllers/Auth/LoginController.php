@@ -48,7 +48,7 @@ class LoginController extends Controller
         {
             $user = $this->guard()->user();
 
-            $this->loginLog($user,$request);
+//            $this->loginLog($user,$request);
 
             return true;
         }

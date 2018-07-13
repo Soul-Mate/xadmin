@@ -69,10 +69,15 @@ class MenuMiddleware
     {
         $current = explode(".", $current);
         $cnt = count($current);
-        if ($cnt <= 0) {
+        if ($cnt <= 1) {
             return false;
         }
-        $pattern = '/\w+\.'.$current[1].'(\.\w+)+/';
+        if ($cnt <= 2) {
+            $pattern = '/^'.$current[0].'\.\w+/';
+            return preg_match($pattern, $route);
+        }
+
+        $pattern = '/\w+\.'.$current[1].'\..*/';
         return preg_match($pattern, $route);
     }
 }
